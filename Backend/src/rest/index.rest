@@ -1,0 +1,25 @@
+#### Registrar usuario con pass encriptado.
+POST http://127.0.0.1:3000/api/users/register
+Content-Type: application/json
+
+{
+    "email": "guille5@gmail.com", 
+    "password": "12345", 
+    "rol": "superadmin",
+    "lenguage": "french"
+}
+
+#### Login
+POST http://127.0.0.1:3000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "guille5@gmail.com", 
+    "password": "12345"
+    
+}
+
+#### Obtener perfil
+GET http://127.0.0.1:3000/api/users/perfil
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1aWxsZTVAZ21haWwuY29tIiwiaWF0IjoxNzE4NTk4MDk5fQ.x6cDqG6qMmkleSbtdDjC1f0oaT0mF6MmqSsvySeo1O8
