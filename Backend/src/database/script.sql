@@ -1,5 +1,22 @@
-CREATE DATABASE softjobs;
-\c softjobs;
-CREATE TABLE usuarios ( id SERIAL, email VARCHAR(50) NOT NULL, password
-VARCHAR(60) NOT NULL, rol VARCHAR(25), lenguage VARCHAR(20) );
-SELECT * FROM usuarios;
+CREATE DATABASE cafeteria;
+\c cafeteria;
+CREATE TABLE cafes ( id SERIAL, nombre VARCHAR(20) NOT NULL);
+
+
+-- Insertar 10 datos reales en la tabla cafes
+INSERT INTO cafes (nombre) VALUES
+('Espresso'),
+('Americano'),
+('Cappuccino'),
+('Latte'),
+('Mocha'),
+('Macchiato'),
+('Flat White'),
+('Cortado'),
+('Affogato'),
+('Ristretto');
+
+
+
+SELECT * FROM cafes;
+

@@ -2,7 +2,7 @@
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
 const { handleVerifyPasswordHash } = require('../utils/utils');
-const { UsersCollection } = require('../database/models/usersModel')
+const { CafesCollection } = require('../database/models/cafesModels')
 
 
 

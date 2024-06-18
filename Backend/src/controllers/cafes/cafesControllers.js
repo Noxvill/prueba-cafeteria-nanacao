@@ -1,15 +1,19 @@
-const { UsersCollection } = require('../../database/models/usersModel')
+const { addCafe } = require('../../database/models/cafesModels');
 
-
-const add_user_controller = async (req, res, next) => {
+const add_cafe_controller = async (req, res, next) => {
 
     try {
-        const { email, password, rol, lenguage } = req.body
-        const response = await UsersCollection.addUser(email, password, rol, lenguage)
-        // await crearUsuario(email, password)
-        res.send(response)
+        const {nombre} = req.body;
+        console.log('Nombre del café a agregar:', nombre);
+
+        const response = await addCafe(nombre);
+        console.log('Respuesta de la base de datos:', response);
+       
+        res.send(response);
+        
     } catch (error) {
-        next
+        console.error('Error al agregar café:', error);
+        next(error);
     }
 }
 
@@ -41,6 +45,6 @@ const login_controller = async (req, res, next) => {
 
 module.exports = {
     login_controller,
-    add_user_controller,
+    add_cafe_controller,
     get_profile_controller
 };

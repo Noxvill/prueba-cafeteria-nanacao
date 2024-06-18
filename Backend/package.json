@@ -1,8 +1,9 @@
 {
-	"name": "tutoria_6",
+	"name": "tutoria_7",
 	"main": "index.js",
 	"description": "",
 	"scripts": {
+		"test": "jest  --watchAll",
 		"dev": "nodemon index.js",
 		"start": "node index.js"
 	},
@@ -13,10 +14,12 @@
 		"express": "^4.19.2",
 		"express-validator": "^7.1.0",
 		"jsonwebtoken": "^9.0.2",
-		"pg": "^8.11.5"
+		"pg": "^8.12.0"
 	},
 	"devDependencies": {
+		"jest": "^29.7.0",
 		"morgan": "^1.10.0",
-		"nodemon": "^3.1.0"
+		"nodemon": "^3.1.0",
+		"supertest": "^7.0.0"
 	}
 }
