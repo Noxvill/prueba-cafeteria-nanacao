@@ -1,6 +1,6 @@
 CREATE DATABASE cafeteria;
 \c cafeteria;
-CREATE TABLE cafes ( id SERIAL, nombre VARCHAR(20) NOT NULL);
+CREATE TABLE cafes ( id SERIAL, nombre VARCHAR(100) NOT NULL);
 
 
 -- Insertar 10 datos reales en la tabla cafes

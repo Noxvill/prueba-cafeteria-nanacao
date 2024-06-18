@@ -1,4 +1,4 @@
-const { addCafe } = require('../../database/models/cafesModels');
+const { addCafe, getAllCafes, updateCafe, deleteCafe } = require('../../database/models/cafesModels');
 
 const add_cafe_controller = async (req, res, next) => {
 
@@ -17,34 +17,75 @@ const add_cafe_controller = async (req, res, next) => {
     }
 }
 
-const get_profile_controller = async (req, res, next) => {
-
+const getCafes = async (req, res, next) => {
     try {
-
-        // const { user_id } = req.params
-        const { email } = req.user
-
-        res.send({ user: { email } })
-
+      const cafes = await getAllCafes();
+      res.status(200).json(cafes);
     } catch (error) {
-        next(error)
+      next(error);
     }
-}
+  };
 
-const login_controller = async (req, res, next) => {
+//   const update_cafe_controller = async (req, res, next) => {
+//     try {
+//         const { id } = req.params;
+//         const { nombre } = req.body;
 
+//         // Verificar que el id en los parámetros sea igual al id en el payload
+//         if (parseInt(id) !== parseInt(req.body.id)) {
+//             return res.status(400).json({ msg: 'El id en los parámetros no coincide con el id en el payload' });
+//         }
+
+//         const response = await updateCafe(id, { nombre });
+//         res.send(response);
+//     } catch (error) {
+//         console.error('Error al actualizar café:', error);
+//         next(error);
+//     }
+// };
+
+const update_cafe_controller = async (req, res, next) => {
     try {
-        const token = req.token
+        const { id } = req.params;
+        const { id: idPayload, nombre } = req.body; // Renombramos el id en el payload para evitar conflictos de nombres
 
-        res.send({ token })
+        // Verificar que el id en los parámetros sea igual al id en el payload
+        if (parseInt(id) !== parseInt(idPayload)) {
+            return res.status(400).json({ msg: 'El id en los parámetros no coincide con el id en el payload' });
+        }
 
+        const response = await updateCafe(id, { nombre });
+        res.send(response);
     } catch (error) {
-        next(error)
+        console.error('Error al actualizar café:', error);
+        next(error);
     }
-}
+};
+
+
+const delete_cafe_controller = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const response = await deleteCafe(id);
+        if (response.status === 404) {
+            return res.status(404).json({ msg: 'Café no encontrado' });
+        }
+
+        res.status(200).json({ msg: 'Café eliminado correctamente' });
+    } catch (error) {
+        console.error('Error al eliminar café:', error);
+        next(error);
+    }
+};
+
+
+
 
 module.exports = {
-    login_controller,
+    
     add_cafe_controller,
-    get_profile_controller
+    getCafes,
+    update_cafe_controller,
+    delete_cafe_controller
 };

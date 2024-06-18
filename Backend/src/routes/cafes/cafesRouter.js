@@ -1,4 +1,4 @@
-const {add_cafe_controller} = require('../../controllers/cafes/cafesControllers')
+const {add_cafe_controller, getCafes, update_cafe_controller, delete_cafe_controller} = require('../../controllers/cafes/cafesControllers')
 const {CafesValidatorCollection} = require('../../validators/cafes/cafesValidator')
 const handleLogs = require('../../middlewares/logsMiddleware');
 const handlelogin = require('../../middlewares/handleLogin')
@@ -8,7 +8,10 @@ const router = require('express').Router();
 
 
 router.post('/register', handleLogs, CafesValidatorCollection.addValidator, add_cafe_controller);
-// router.post('/login', handlelogin.handleLoginMiddleware, login_controller);
-// router.get('/perfil/', authMiddleware, get_profile_controller);
+router.get('/', getCafes);
+router.put('/actualizar/:id', update_cafe_controller);
+router.delete('/borrar/:id', delete_cafe_controller);
+
+
 
 module.exports = router;
